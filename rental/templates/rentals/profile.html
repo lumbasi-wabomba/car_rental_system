@@ -1,0 +1,30 @@
+{% extends 'rentals/base.html' %}
+{% block content %}
+
+<h2>Welcome, {{ user.username }} 👋</h2>
+
+<h3>Your Bookings</h3>
+{% if bookings %}
+  <ul>
+    {% for booking in bookings %}
+      <li>
+        <strong>{{ booking.car.brand }} {{ booking.car.model }}</strong><br>
+        Dates: {{ booking.start_date }} to {{ booking.end_date }}<br>
+        Booked On: {{ booking.booked_on|date:"F j, Y, g:i a" }}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>You haven't made any bookings yet.</p>
+{% endif %}
+
+<li>
+  <strong>{{ booking.car.brand }} {{ booking.car.model }}</strong><br>
+  Dates: {{ booking.start_date }} to {{ booking.end_date }}<br>
+  Days: {{ booking.total_days }}<br>
+  Total: ${{ booking.total_price }}<br>
+  Booked On: {{ booking.booked_on|date:"F j, Y, g:i a" }}
+</li>
+
+
+{% endblock %}
