@@ -60,7 +60,7 @@ def book_car(request, car_id):
             booking.user = request.user
             booking.car = car
 
-            # Check for overlapping bookings
+            
             overlapping = Booking.objects.filter(
                 car=car,
                 end_date__gte=booking.start_date,
@@ -71,7 +71,7 @@ def book_car(request, car_id):
             else:
                 booking.save()
                 messages.success(request, "Car booked successfully!")
-                return redirect('profile')  # or wherever you want
+                return redirect('profile') 
     else:
         form = BookingForm()
     
